@@ -45,7 +45,7 @@ public class SwipeableImageAdapter extends PagerAdapter {
         View itemView = mLayoutInflater.inflate(R.layout.fragment_image_slider, container, false);
 
         final ZoomableDraweeView zoomableDraweeView = itemView.findViewById(R.id.zoomableView);
-        zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(true);
+        zoomableDraweeView.setAllowTouchInterceptionWhileZoomed(false);
         zoomableDraweeView.setIsLongpressEnabled(false);
         zoomableDraweeView.setTapListener(new DoubleTapGestureListener(zoomableDraweeView));
         zoomableDraweeView.getHierarchy().setProgressBarImage(new CircularProgressBarDrawable());
