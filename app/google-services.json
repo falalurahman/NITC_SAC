@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1069872475528",
+    "firebase_url": "https://sac-app-d11af.firebaseio.com",
+    "project_id": "sac-app-d11af",
+    "storage_bucket": "sac-app-d11af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1069872475528:android:b2c9459b33a1d69a",
+        "android_client_info": {
+          "package_name": "com.falalurahman.sacapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1069872475528-7r6r92bsf4tnomrk1jnq24c8djndr4iv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.falalurahman.sacapp",
+            "certificate_hash": "897022eb3929bea5b9815a19326207a090dc5298"
+          }
+        },
+        {
+          "client_id": "1069872475528-q3dofjjc9qcbi79lrjkr3e6krcqrr390.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyByT7YE3armN45eWWxboxoMNN5hgrjd0Nc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1069872475528-q3dofjjc9qcbi79lrjkr3e6krcqrr390.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
