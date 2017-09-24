@@ -20,6 +20,9 @@ import com.falalurahman.sacapp.Fragments.StoreFeedFragment;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private Fragment newsfeedFragment;
+    private Fragment storefeedFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        navigationView.getMenu().getItem(0).setChecked(true);
         displaySelectedScreen(R.id.nav_home);
 
         SharedPreferences sharedPreferences = getSharedPreferences("SACNITC", MODE_PRIVATE);
@@ -100,10 +104,16 @@ public class MainActivity extends AppCompatActivity
 
         switch (itemId) {
             case R.id.nav_home:
-                fragment = new NewsFeedFragment();
+                if (newsfeedFragment == null) {
+                    newsfeedFragment = new NewsFeedFragment();
+                }
+                fragment = newsfeedFragment;
                 break;
             case R.id.nav_store:
-                fragment = new StoreFeedFragment();
+                if (storefeedFragment == null) {
+                    storefeedFragment = new StoreFeedFragment();
+                }
+                fragment = storefeedFragment;
                 break;
         }
 

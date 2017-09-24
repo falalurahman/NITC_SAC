@@ -1,5 +1,7 @@
 package com.falalurahman.sacapp;
 
+import android.*;
+import android.Manifest;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -13,6 +15,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.support.annotation.RequiresPermission;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
@@ -37,6 +40,17 @@ import com.facebook.drawee.view.SimpleDraweeView;
 import com.falalurahman.sacapp.JavaBean.StoreItem;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionDeniedResponse;
+import com.karumi.dexter.listener.PermissionGrantedResponse;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.BaseMultiplePermissionsListener;
+import com.karumi.dexter.listener.multi.DialogOnAnyDeniedMultiplePermissionsListener;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
+import com.karumi.dexter.listener.single.BasePermissionListener;
+import com.karumi.dexter.listener.single.PermissionListener;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -44,6 +58,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
@@ -110,28 +125,28 @@ public class AddItemActivity extends AppCompatActivity {
         Photo1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPictureDialog(AddItemActivity.this, 0);
+                checkPermissionAndStart(0);
             }
         });
         Photo2 = findViewById(R.id.photo2);
         Photo2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPictureDialog(AddItemActivity.this, 1);
+                checkPermissionAndStart(1);
             }
         });
         Photo3 = findViewById(R.id.photo3);
         Photo3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPictureDialog(AddItemActivity.this, 2);
+                checkPermissionAndStart(2);
             }
         });
         Photo4 = findViewById(R.id.photo4);
         Photo4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                openPictureDialog(AddItemActivity.this, 3);
+                checkPermissionAndStart(3);
             }
         });
         updateImageView();
@@ -154,6 +169,20 @@ public class AddItemActivity extends AppCompatActivity {
         imageUrls = new ArrayList<>();
         requestQueue = Volley.newRequestQueue(this);
 
+    }
+
+    private void checkPermissionAndStart(final int position) {
+        Dexter.withActivity(AddItemActivity.this)
+                .withPermissions(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .withListener(new BaseMultiplePermissionsListener() {
+                    @Override
+                    public void onPermissionsChecked(MultiplePermissionsReport report) {
+                        if (report.areAllPermissionsGranted()) {
+                            openPictureDialog(AddItemActivity.this, position);
+                        }
+                    }
+                })
+                .check();
     }
 
     private void openPictureDialog(Context context, final int position) {
