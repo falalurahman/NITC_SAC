@@ -1,5 +1,6 @@
 package com.falalurahman.sacapp;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
@@ -37,6 +38,13 @@ public class MainActivity extends AppCompatActivity
 
         displaySelectedScreen(R.id.nav_home);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("SACNITC", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        editor.putString("Username", "Falalu Rahman");
+        editor.putString("RollNo", "B140347CS");
+
+        editor.apply();
     }
 
     @Override
