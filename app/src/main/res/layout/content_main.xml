@@ -9,24 +9,13 @@
     tools:context="com.falalurahman.sacapp.MainActivity"
     tools:showIn="@layout/app_bar_main">
 
-    <LinearLayout
+    <FrameLayout
+        android:id="@+id/contentFrame"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <com.cooltechworks.views.shimmer.ShimmerRecyclerView
-            android:id="@+id/newsfeed_listview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:shimmer_demo_angle="20"
-            app:shimmer_demo_child_count="5"
-            app:shimmer_demo_layout="@layout/row_empty_newsfeed"
-            app:shimmer_demo_layout_manager_type="linear_vertical"
-            app:shimmer_demo_shimmer_color="@color/colorShimmer"
-            app:shimmer_demo_view_holder_item_background="@drawable/shimmer_bg" />
-    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
