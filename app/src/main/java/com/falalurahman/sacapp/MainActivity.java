@@ -8,11 +8,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.falalurahman.sacapp.Helper.RecyclerDivider;
 import com.falalurahman.sacapp.JavaBean.NewsFeed;
 import com.falalurahman.sacapp.ViewHolder.NewsFeedHolder;
@@ -23,7 +23,10 @@ import com.google.firebase.database.FirebaseDatabase;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final String NEWSFEED_REF = "NewsFeed";
+    private static final int DIVIDER_LENGTH = 40;
     FirebaseRecyclerAdapter<NewsFeed, NewsFeedHolder> mAdapter;
+    ShimmerRecyclerView newsFeedListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,14 +45,14 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference newsFeedRef = firebaseDatabase.getReference("NewsFeed");
+        DatabaseReference newsFeedRef = firebaseDatabase.getReference(NEWSFEED_REF);
 
-        RecyclerView newsFeedListView = findViewById(R.id.newsfeed_listview);
+        newsFeedListView = findViewById(R.id.newsfeed_listview);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setReverseLayout(true);
         linearLayoutManager.setStackFromEnd(true);
         newsFeedListView.setLayoutManager(linearLayoutManager);
-        RecyclerDivider recyclerDivider = new RecyclerDivider(40);
+        RecyclerDivider recyclerDivider = new RecyclerDivider(DIVIDER_LENGTH);
         newsFeedListView.addItemDecoration(recyclerDivider);
 
         mAdapter =
@@ -67,9 +70,17 @@ public class MainActivity extends AppCompatActivity
                             viewHolder.setImages(MainActivity.this, model.getImageUrls());
                         }
                     }
+
+                    @Override
+                    public void onDataChanged() {
+                        super.onDataChanged();
+                        newsFeedListView.hideShimmerAdapter();
+                    }
                 };
 
         newsFeedListView.setAdapter(mAdapter);
+        newsFeedListView.showShimmerAdapter();
+
     }
 
     @Override
