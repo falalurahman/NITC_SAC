@@ -8,5 +8,10 @@
 
     <string name="sac">Students Affairs Council, NIT Calicut</string>
 
+    <string name="form_contact">Contact: </string>
+    <string name="form_phonenumber">Phone Number: </string>
+
     <string name="nav_home">Home</string>
+    <string name="nav_store">Store</string>
+    <string name="title_activity_add_item">Add New Item</string>
 </resources>

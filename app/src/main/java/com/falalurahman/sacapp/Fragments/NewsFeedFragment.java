@@ -70,11 +70,6 @@ public class NewsFeedFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (mAdapter != null) {

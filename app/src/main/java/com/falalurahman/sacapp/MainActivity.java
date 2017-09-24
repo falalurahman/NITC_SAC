@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.falalurahman.sacapp.Fragments.NewsFeedFragment;
+import com.falalurahman.sacapp.Fragments.StoreFeedFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -92,6 +93,9 @@ public class MainActivity extends AppCompatActivity
         switch (itemId) {
             case R.id.nav_home:
                 fragment = new NewsFeedFragment();
+                break;
+            case R.id.nav_store:
+                fragment = new StoreFeedFragment();
                 break;
         }
 
